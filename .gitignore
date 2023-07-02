@@ -1,0 +1,11 @@
+ImgForGithub/
+packages/
+*.sln
+*.user
+*.csproj
+.vs*
+Properties/
+obj/
+bin/
+App*
+!App.xaml
