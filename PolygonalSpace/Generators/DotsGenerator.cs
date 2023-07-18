@@ -60,7 +60,7 @@ namespace PolygonalSpace.Generators
                 y += Sector.Size;
             }
 
-            _space.AddElement(visual);
+            Space.AddElement(visual);
             context.Close();
         }
 
