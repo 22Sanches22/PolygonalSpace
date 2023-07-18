@@ -35,13 +35,13 @@ namespace PolygonalSpace.Generators
                                             GetValueFromPercentage(_color.G, zoomPercentage),
                                             GetValueFromPercentage(_color.B, zoomPercentage));
 
-                Point positioningPoint = new(random.Next(particleDiameter, (int)(_space.Width - particleDiameter)),
-                                             random.Next(particleDiameter, (int)(_space.Height - particleDiameter)));
+                Point positioningPoint = new(random.Next(particleDiameter, (int)(Space.Width - particleDiameter)),
+                                             random.Next(particleDiameter, (int)(Space.Height - particleDiameter)));
 
                 context.DrawEllipse(new SolidColorBrush(color), null, positioningPoint, particleRadius, particleRadius);
             }
 
-            _space.AddElement(visual);
+            Space.AddElement(visual);
             context.Close();
         }
 
