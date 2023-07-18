@@ -23,11 +23,11 @@ namespace PolygonalSpace.Generators
         {
             _sectorSize = Sector.Size = sectorSize;
 
-            int sectorCountX = (int)Math.Floor(_space.Width / sectorSize),
-                sectorCountY = (int)Math.Floor(_space.Height / sectorSize);
+            int sectorCountX = (int)Math.Floor(Space.Width / sectorSize),
+                sectorCountY = (int)Math.Floor(Space.Height / sectorSize);
 
-            _startPoint = new Point((_space.Width - sectorCountX * sectorSize) / 2,
-                                    (_space.Height - sectorCountY * sectorSize) / 2);
+            _startPoint = new Point((Space.Width - sectorCountX * sectorSize) / 2,
+                                    (Space.Height - sectorCountY * sectorSize) / 2);
 
             _sectors = new Sector[sectorCountY, sectorCountX];
         }
@@ -57,7 +57,7 @@ namespace PolygonalSpace.Generators
                 y += _sectorSize;
             }
 
-            _space.AddElement(visual);
+            Space.AddElement(visual);
             context.Close();
         }
 
