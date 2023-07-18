@@ -34,7 +34,7 @@ namespace PolygonalSpace.Generators
                 }
             }
 
-            _space.AddElement(visual);
+            Space.AddElement(visual);
             context.Close();
         }
     }
