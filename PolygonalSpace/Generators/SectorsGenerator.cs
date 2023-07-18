@@ -11,7 +11,7 @@ namespace PolygonalSpace.Generators
         private readonly int _sectorSize;
         private readonly Point _startPoint;
         private readonly Sector[,] _sectors;
-        private readonly static Dictionary<bool, Brush> _booleanValueColor = new()
+        private readonly static Dictionary<bool, Brush> s_booleanValueColor = new()
         {
             [true] = new SolidColorBrush(Color.FromRgb(142, 255, 111)),
             [false] = new SolidColorBrush(Color.FromRgb(255, 111, 111))
@@ -47,7 +47,7 @@ namespace PolygonalSpace.Generators
                 {
                     _sectors[i, j] = new Sector(sectorPositionIndex++ % 2 == 0);
  
-                    context.DrawRectangle(null, new Pen(_booleanValueColor[_sectors[i, j].SectorFillAbility], 1),
+                    context.DrawRectangle(null, new Pen(s_booleanValueColor[_sectors[i, j].SectorFillAbility], 1),
                                                 new Rect(x, y, _sectorSize - 1, _sectorSize - 1));
 
                     x += _sectorSize;
