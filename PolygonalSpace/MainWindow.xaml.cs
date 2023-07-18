@@ -14,8 +14,8 @@ namespace PolygonalSpace
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static PolygonalSpaceGenerator _generator;
-        private static readonly Dictionary<object, Regex> _allowedSymbolsByTag = new()
+        private static PolygonalSpaceGenerator s_generator;
+        private static readonly Dictionary<object, Regex> s_allowedSymbolsByTag = new()
         {
             ["double"] = new Regex("[^0-9,]+"),
             ["int"] = new Regex("[^0-9]+"),
@@ -38,9 +38,9 @@ namespace PolygonalSpace
                 PolygonsGenerator polygons = new(PolygonsSpace, dots.GetDots());
                 ParticlesGenerator particles = new(ParticlesSpace, int.Parse(NumberParticles.Text), new Range(double.Parse(ParticleRadiusRangeMin.Text), double.Parse(ParticleRadiusRangeMax.Text)), (Color)ParticleColor.SelectedColor);
 
-                _generator = new PolygonalSpaceGenerator(new Generator[] { sectors, dots, circles, lines, polygons, particles });
-                _generator.AsyncClearSpaces();
-                _generator.AsyncGenerate();
+                s_generator = new PolygonalSpaceGenerator(new Generator[] { sectors, dots, circles, lines, polygons, particles });
+                s_generator.AsyncClearSpaces();
+                s_generator.AsyncGenerate();
             }
             catch (FormatException)
             {
@@ -71,12 +71,12 @@ namespace PolygonalSpace
         }
 
         private void GenerateButton_Click(object sender, RoutedEventArgs e) => GenerateImage();
-        private void SaveButton_Click(object sender, RoutedEventArgs e) => _generator?.SaveImage(MainSpace, int.Parse(QualityMultiplier.Text));
+        private void SaveButton_Click(object sender, RoutedEventArgs e) => s_generator?.SaveImage(MainSpace, int.Parse(QualityMultiplier.Text));
 
         private void ZoomItButton_Click(object sender, RoutedEventArgs e) => Zoom.Value += 0.01;
         private void ZoomOutButton_Click(object sender, RoutedEventArgs e) => Zoom.Value -= 0.01;
 
         private void InputValidationTextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e) =>
-            e.Handled = _allowedSymbolsByTag[((TextBox)sender).Tag].IsMatch(e.Text);
+            e.Handled = s_allowedSymbolsByTag[((TextBox)sender).Tag].IsMatch(e.Text);
     }
 }
